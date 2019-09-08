@@ -1,0 +1,15 @@
+# copier ce fichier dans un new file sans le '.template' dans le filename
+# puis dans le fichier obtenu, remplacer les placeholders __XXX__ ci-dessous par les values des env variables
+# IMPORTANT: mettre le fichier obtenu dans le .gitignore
+apiVersion: v1
+kind: ConfigMap
+data: 
+  AWS_MEDIA_BUCKET: ___INSERT_AWS_MEDIA_BUCKET___
+  AWS_PROFILE: ___INSERT_AWS_PROFILE___
+  AWS_REGION: ___INSERT_AWS_REGION___
+  JWT_SECRET: ___INSERT_JWT_SECRET___
+  POSTGRESS_DATABASE: ___INSERT_POSTGRESS_DATABASE___
+  POSTGRESS_HOST: ___INSERT_POSTGRESS_HOST___
+metadata:
+  name: env-config
+

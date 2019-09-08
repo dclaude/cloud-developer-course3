@@ -1,0 +1,6 @@
+cluster_name = "udagram-cluster"
+aws_region = "eu-west-3"
+ssh_public_key_file = "~/.ssh/k8s.pub"
+ssh_private_key_file = "/Users/dclaude/.ssh/k8s"
+control_plane_type = "t3.small"
+worker_type = "t3.small"

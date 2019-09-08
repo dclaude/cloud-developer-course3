@@ -1,0 +1,44 @@
+version: "3"
+services:
+  reverseproxy:
+      image: benclaude/reverseproxy
+      # the reverseproxy nginx listens on port 8080 on the host and in the container
+      ports:
+          - 8080:8080
+      restart: always
+      depends_on:
+        - backend-user
+        - backend-feed     
+  backend-user:
+    image: benclaude/udacity-restapi-user
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD 
+      POSTGRESS_DATABASE: $POSTGRESS_DATABASE 
+      POSTGRESS_HOST: $POSTGRESS_HOST 
+      AWS_REGION: $AWS_REGION 
+      AWS_PROFILE: $AWS_PROFILE 
+      AWS_MEDIA_BUCKET: $AWS_MEDIA_BUCKET
+      JWT_SECRET: $JWT_SECRET
+  backend-feed:
+    image: benclaude/udacity-restapi-feed
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD 
+      POSTGRESS_DATABASE: $POSTGRESS_DATABASE 
+      POSTGRESS_HOST: $POSTGRESS_HOST 
+      AWS_REGION: $AWS_REGION 
+      AWS_PROFILE: $AWS_PROFILE 
+      AWS_MEDIA_BUCKET: $AWS_MEDIA_BUCKET
+      JWT_SECRET: $JWT_SECRET
+  frontend:
+    image: benclaude/udacity-frontend:local
+    # frontend ngnix listens on port 8100 on the host which is mapped to port 80 inside the container
+    # in environment.ts, the frontend code used the following api url:
+    # apiHost: 'http://localhost:8080/api/v0'
+    ports:
+      - "8100:80"

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: reverseproxy
+  name: reverseproxy
+  annotations:
+    # from AWS console / ACM / domain name 'udagram.com'
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:eu-west-3:346271393005:certificate/7f38cd30-3ab1-48e8-ac9f-f90ec3d2426c
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+spec:
+  ports:
+  - name: "443"
+    port: 443
+    targetPort: 8080
+  selector:
+    service: reverseproxy
+  # to create an AWS load-balancer (cf paragraph 'ServiceType3: LoadBalancer') which will be available from the internet
+  # use 'kubectl get service' to get its url
+  type: LoadBalancer

@@ -1,0 +1,27 @@
+apiVersion: v1
+# on defini le type d'object que l'on va decrire dans ce fichier:
+kind: Pod
+metadata:
+  name: pod-example
+spec:
+  # on decrit nos containers:
+  containers:
+  - image: benclaude/reverseproxy
+    # on donne un nom a notre container:
+    name: reverseproxy
+    # on definit le comportement qd le container est redeployed/rescheduled
+    # ici on indique qu'on veut a chaque fois recuperer l'image de notre container depuis le registry:
+    imagePullPolicy: Always          
+    # on definit les 'resource limits' de notre container:
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "1024Mi"
+        cpu: "500m"       
+    # on definit le port utilise par le container:
+    ports:
+    - containerPort: 8080
+  restartPolicy: Always
+
