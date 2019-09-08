@@ -13,7 +13,7 @@ spec:
         api: external        
     spec:
       containers:
-      - image: benclaude/udacity-frontend:v2
+      - image: benclaude/udacity-frontend:latest
         name: frontend
         imagePullPolicy: Always          
         ports:

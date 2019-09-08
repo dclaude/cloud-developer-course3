@@ -14,7 +14,7 @@ spec:
         version: "2"
     spec:
       containers:
-      - image: benclaude/reverseproxy
+      - image: benclaude/reverseproxy:latest
         name: reverseproxy
         imagePullPolicy: Always          
         resources:

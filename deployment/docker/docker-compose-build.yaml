@@ -4,18 +4,18 @@ services:
     # creates an image named 'benclaude/reverseproxy' built from './Dockerfile'
     build:
       context: .
-    image: benclaude/reverseproxy 
+    image: benclaude/reverseproxy:latest
   backend_user:
     build:
       context: ../../restapi-user
-    image: benclaude/udacity-restapi-user
+    image: benclaude/udacity-restapi-user:latest
   backend_feed:
     build:
       context: ../../restapi-feed  
-    image: benclaude/udacity-restapi-feed
+    image: benclaude/udacity-restapi-feed:latest
   frontend:
     # creates an image named 'benclaude/udacity-frontend' and tagged 'local', built from '../../frontend'
     # from https://docs.docker.com/compose/compose-file/#service-configuration-reference
     build:
       context: ../../frontend  
-    image: benclaude/udacity-frontend:local
+    image: benclaude/udacity-frontend:latest
