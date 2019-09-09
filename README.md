@@ -61,3 +61,12 @@ kubectl apply -f backend-user-service.yaml
 kubectl apply -f frontend-service.yaml
 kubectl apply -f reverseproxy-service.yaml
 ```
+
+## Cleanup
+
+```
+cd deployment/k8s/
+kubeone reset config.yaml --tfjson ../terraform/tf.json
+cd ../terraform
+terraform destroy
+```
